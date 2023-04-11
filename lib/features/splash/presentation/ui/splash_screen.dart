@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokedex/core/utils/consts.dart';
+import 'package:pokedex/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:pokedex/main.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,10 +12,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late SplashBloc bloc;
+  late ConstsRoutes constsRoutes;
+
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 3)).then((_) => Navigator.of(context)
-        .pushNamedAndRemoveUntil(gConstsRoutes.homeScreen, (route) => false));
+    bloc = GetIt.I.get();
+    constsRoutes = GetIt.I.get();
+
+    Future.delayed(const Duration(seconds: 3)).then(
+        (_) => bloc.navigateRemoveUntil(context, constsRoutes.homeScreen));
     super.initState();
   }
 

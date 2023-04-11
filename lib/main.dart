@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pokedex/core/inject/injector.dart';
 import 'package:pokedex/core/utils/consts.dart';
 import 'package:pokedex/features/splash/presentation/ui/splash_screen.dart';
 import 'package:pokedex/repository/pokemon_repository.dart';
 import 'package:pokedex/features/home/presentation/ui/home_screen.dart';
 
 final gPokemonRepository = PokemonRepository();
-final gConstsRoutes = ConstsRoutes();
-final gConstsImages = ConstsImages();
 Future<void> main() async {
+  Injector.inject();
+  late ConstsRoutes routesConsts;
+
+  routesConsts = GetIt.I.get();
+
   runApp(MaterialApp(
     routes: {
-      gConstsRoutes.splashScreen: (_) => const SplashScreen(),
-      gConstsRoutes.homeScreen: (_) => const HomeScreen()
+      routesConsts.splashScreen: (_) => const SplashScreen(),
+      routesConsts.homeScreen: (_) => const HomeScreen()
     },
-    initialRoute: gConstsRoutes.splashScreen,
+    initialRoute: routesConsts.splashScreen,
   ));
 }

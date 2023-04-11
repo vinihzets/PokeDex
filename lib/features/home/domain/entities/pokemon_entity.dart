@@ -1,11 +1,6 @@
 class PokemonEntity {
-  List<Abilities>? abilities;
-  int? baseExperience;
   int? height;
   int? id;
-  bool? isDefault;
-  String? locationAreaEncounters;
-  List<Moves>? moves;
   String? name;
   Sprites? sprites;
   List<Stats>? stats;
@@ -16,13 +11,8 @@ class PokemonEntity {
   List<NextEvolution>? nextEvolution;
 
   PokemonEntity({
-    this.abilities,
-    this.baseExperience,
     this.height,
     this.id,
-    this.isDefault,
-    this.locationAreaEncounters,
-    this.moves,
     this.name,
     this.sprites,
     this.stats,
@@ -33,24 +23,13 @@ class PokemonEntity {
     this.nextEvolution,
   });
 
-  PokemonEntity.fromJson(Map<String, dynamic> json, String this.url) {
-    if (json['abilities'] != null) {
-      abilities = <Abilities>[];
-      json['abilities'].forEach((v) {
-        abilities!.add(Abilities.fromJson(v));
-      });
-    }
-    baseExperience = json['base_experience'];
+  PokemonEntity.fromJson(
+    Map<String, dynamic> json,
+    //  String this.url
+  ) {
     height = json['height'];
     id = json['id'];
-    isDefault = json['is_default'];
-    locationAreaEncounters = json['location_area_encounters'];
-    if (json['moves'] != null) {
-      moves = <Moves>[];
-      json['moves'].forEach((v) {
-        moves!.add(Moves.fromJson(v));
-      });
-    }
+
     name = json['name'];
     sprites =
         json['sprites'] != null ? Sprites.fromJson(json['sprites']) : null;
