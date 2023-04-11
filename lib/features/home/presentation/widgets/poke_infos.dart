@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/main.dart';
-import 'package:pokedex/repository/pokemon.dart';
-import 'package:pokedex/widgets/poke_info_panel.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon.dart';
+import 'package:pokedex/features/home/presentation/widgets/poke_info_panel.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PokemonInfo extends StatefulWidget {
-  final Pokemon pokemon;
+  final PokemonEntity pokemon;
 
   const PokemonInfo({
     required this.pokemon,

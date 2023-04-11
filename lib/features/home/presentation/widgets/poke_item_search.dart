@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:pokedex/main.dart';
-import 'package:pokedex/repository/pokemon.dart';
-import 'package:pokedex/widgets/poke_infos.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon.dart';
+import 'package:pokedex/features/home/presentation/widgets/poke_infos.dart';
 
 class PokeItemSearch extends StatelessWidget {
-  final Pokemon pokemon;
+  final PokemonEntity pokemon;
   const PokeItemSearch({required this.pokemon, super.key});
 
   @override

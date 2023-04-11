@@ -1,4 +1,4 @@
-class Pokemon {
+class PokemonEntity {
   List<Abilities>? abilities;
   int? baseExperience;
   int? height;
@@ -15,7 +15,7 @@ class Pokemon {
   List<PrevEvolution>? prevEvolution;
   List<NextEvolution>? nextEvolution;
 
-  Pokemon({
+  PokemonEntity({
     this.abilities,
     this.baseExperience,
     this.height,
@@ -33,7 +33,7 @@ class Pokemon {
     this.nextEvolution,
   });
 
-  Pokemon.fromJson(Map<String, dynamic> json, String this.url) {
+  PokemonEntity.fromJson(Map<String, dynamic> json, String this.url) {
     if (json['abilities'] != null) {
       abilities = <Abilities>[];
       json['abilities'].forEach((v) {

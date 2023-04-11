@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/repository/pokemon.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon.dart';
 
 class PokeStatsPanel extends StatelessWidget {
-  final Pokemon pokemon;
+  final PokemonEntity pokemon;
   const PokeStatsPanel({required this.pokemon, super.key});
 
   @override

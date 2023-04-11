@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/main.dart';
 import 'package:pokedex/container/home_loading.dart';
-import 'package:pokedex/repository/pokemon.dart';
-import 'package:pokedex/widgets/poke_item.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon.dart';
+import 'package:pokedex/features/home/presentation/widgets/poke_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -91,7 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: ((context, snapshot) {
                       if (snapshot.hasData) {
                         final url = '';
-                        final pokemon = Pokemon.fromJson(snapshot.data, url);
+                        final pokemon =
+                            PokemonEntity.fromJson(snapshot.data, url);
                         return GridView.builder(
                             itemCount: 1,
                             gridDelegate:
@@ -132,8 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   gPokemonRepository.getInfoPokemonsFetch(url),
                               builder: (context, pokemonInfo) {
                                 if (pokemonInfo.hasData) {
-                                  final pokemon =
-                                      Pokemon.fromJson(pokemonInfo.data, url);
+                                  final pokemon = PokemonEntity.fromJson(
+                                      pokemonInfo.data, url);
                                   return PokeItem(
                                     pokemon: pokemon,
                                   );
