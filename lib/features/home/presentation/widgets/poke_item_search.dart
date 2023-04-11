@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/main.dart';
-import 'package:pokedex/features/home/domain/entities/pokemon.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_infos.dart';
 
 class PokeItemSearch extends StatelessWidget {

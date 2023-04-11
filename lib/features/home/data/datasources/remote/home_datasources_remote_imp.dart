@@ -8,6 +8,7 @@ import 'package:pokedex/features/home/data/datasources/home_datasources.dart';
 import 'package:http/http.dart' as http;
 
 class HomeDataSourcesRemoteImp implements HomeDataSources {
+  @override
   Future<Either<Failure, dynamic>> fetchAllPokemons() async {
     String api = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=700';
 

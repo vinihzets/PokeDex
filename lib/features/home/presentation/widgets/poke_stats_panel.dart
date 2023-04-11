@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/features/home/domain/entities/pokemon.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 
 class PokeStatsPanel extends StatelessWidget {
   final PokemonEntity pokemon;
@@ -61,7 +61,7 @@ class PokeStatsPanel extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                       color: color,
                     ),
-                    child: Text(value.toString() + "/" + max.toString(),
+                    child: Text("$value/$max",
                         style: const TextStyle(color: Colors.white))),
               ],
             ),

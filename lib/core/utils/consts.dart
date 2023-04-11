@@ -1,5 +1,6 @@
 class ConstsRoutes {
   final String homeScreen = '/home';
+  final String splashScreen = '/splash';
 }
 
 class ConstsImages {

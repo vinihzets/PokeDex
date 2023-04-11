@@ -1,10 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokedex/repository/pokemon.dart';
-import 'package:pokedex/repository/pokemonevos.dart';
 
 class PokemonRepository {
   Future getPokemonsFetch() async {
@@ -142,5 +138,6 @@ class PokemonRepository {
       case 'shadow':
         return Colors.black;
     }
+    return null;
   }
 }
