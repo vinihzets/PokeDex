@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Opacity(
             opacity: 0.1,
             child: Image.asset(
-              gConsts.blackpokeball,
+              gConstsImages.blackpokeball,
               width: 360,
               height: 330,
             ),
