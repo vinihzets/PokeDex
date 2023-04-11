@@ -95,9 +95,9 @@ class NextEvolution {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['num'];
+    data['name'];
     return data;
   }
 }
@@ -114,9 +114,9 @@ class PrevEvolution {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = {};
+    data['num'];
+    data['name'];
     return data;
   }
 }
@@ -158,9 +158,9 @@ class Ability {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['name'] = this.name;
-    data['url'] = this.url;
+    final Map<String, dynamic> data = {};
+    data['name'];
+    data['url'];
     return data;
   }
 }
@@ -179,9 +179,9 @@ class GameIndices {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['game_index'] = this.gameIndex;
-    if (this.version != null) {
-      data['version'] = this.version!.toJson();
+    data['game_index'] = gameIndex;
+    if (version != null) {
+      data['version'] = version!.toJson();
     }
     return data;
   }

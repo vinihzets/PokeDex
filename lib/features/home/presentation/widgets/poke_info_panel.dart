@@ -1,16 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:pokedex/container/home_loading.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/main.dart';
-import 'package:pokedex/repository/pokemon.dart';
-import 'package:pokedex/repository/pokemonevos.dart';
-import 'package:pokedex/widgets/poke_evolves.dart';
-import 'package:pokedex/widgets/poke_stats_panel.dart';
+import 'package:pokedex/features/home/presentation/widgets/poke_evolves.dart';
+import 'package:pokedex/features/home/presentation/widgets/poke_stats_panel.dart';
 
 class PokeInfoPanel extends StatelessWidget {
   final ScrollController controller;
-  final Pokemon pokemon;
+  final PokemonEntity pokemon;
   const PokeInfoPanel(
       {required this.controller, required this.pokemon, super.key});
 
@@ -18,7 +14,7 @@ class PokeInfoPanel extends StatelessWidget {
   Widget build(BuildContext context) => DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 41, 39, 39),
+          backgroundColor: const Color.fromARGB(255, 41, 39, 39),
           body: TabBarView(
             children: <Widget>[
               Tab(

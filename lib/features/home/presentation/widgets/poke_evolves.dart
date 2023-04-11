@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/main.dart';
-import 'package:pokedex/repository/pokemon.dart';
-import 'package:pokedex/repository/pokemonevos.dart';
+import 'package:pokedex/repository/pokemon_evos_entity.dart';
 
 class PokemonEvolves extends StatelessWidget {
-  final Pokemon pokemon;
+  final PokemonEntity pokemon;
   const PokemonEvolves({required this.pokemon, super.key});
 
   @override
@@ -14,9 +14,10 @@ class PokemonEvolves extends StatelessWidget {
         future: gPokemonRepository.getPokeEvolutions(),
         builder: ((context, snapshot) {
           if (snapshot.hasData && !snapshot.hasError) {
-            final realList =
-                snapshot.data?.map((e) => PokemonEvos.fromJson(e)).toList() ??
-                    [];
+            final realList = snapshot.data
+                    ?.map((e) => PokemonEvosEntity.fromJson(e))
+                    .toList() ??
+                [];
             final selectedPokemon = realList.firstWhere(
               (element) => element.id == pokemon.id,
             );

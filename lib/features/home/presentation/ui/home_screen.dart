@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/main.dart';
 import 'package:pokedex/container/home_loading.dart';
-import 'package:pokedex/features/home/domain/entities/pokemon.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           showInputTextField = false;
                         });
                       },
-                      icon: Icon(Icons.restore))
-                  : Text(''),
+                      icon: const Icon(Icons.restore))
+                  : const Text(''),
               const Text(
                 'Pokedex',
                 style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),

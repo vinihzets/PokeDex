@@ -1,4 +1,4 @@
-class PokemonEvos {
+class PokemonEvosEntity {
   int? id;
   String? num;
   String? name;
@@ -6,7 +6,7 @@ class PokemonEvos {
   List<NextEvolution>? nextEvolution;
   List<PrevEvolution>? prevEvolution;
 
-  PokemonEvos(
+  PokemonEvosEntity(
       {this.id,
       this.num,
       this.name,
@@ -14,7 +14,7 @@ class PokemonEvos {
       this.nextEvolution,
       this.prevEvolution});
 
-  factory PokemonEvos.fromJson(Map<String, dynamic> json) {
+  factory PokemonEvosEntity.fromJson(Map<String, dynamic> json) {
     final List<NextEvolution> nextEvolution = [];
     if (json['next_evolution'] != null) {
       json['next_evolution'].forEach((v) {
@@ -27,7 +27,7 @@ class PokemonEvos {
         prevEvolution.add(PrevEvolution.fromJson(v));
       });
     }
-    return PokemonEvos(
+    return PokemonEvosEntity(
         id: json['id'],
         num: json['num'],
         name: json['name'],
@@ -49,10 +49,9 @@ class NextEvolution {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
-
+    final Map<String, dynamic> data = {};
+    data['num'];
+    data['name'];
     return data;
   }
 }
@@ -69,9 +68,9 @@ class PrevEvolution {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = {};
+    data['num'];
+    data['name'];
 
     return data;
   }
