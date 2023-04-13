@@ -45,46 +45,34 @@ class PokeInfoPanel extends StatelessWidget {
                       child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 100.0, top: 30.0),
-                                child: Text(
-                                  pokemon.weight.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 16, color: Colors.white),
-                                ),
+                              Text(
+                                pokemon.weight.toString(),
+                                style: const TextStyle(
+                                    fontSize: 16, color: Colors.white),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 120.0, top: 30.0),
-                                child: Text(
-                                  pokemon.height.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 16, color: Colors.white),
-                                ),
+                              Text(
+                                pokemon.height.toString(),
+                                style: const TextStyle(
+                                    fontSize: 16, color: Colors.white),
                               )
                             ],
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: const [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 95.0),
-                                  child: Text(
-                                    'Weight',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 82, 80, 80)),
-                                  ),
+                                Text(
+                                  'Weight',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 82, 80, 80)),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 100.0),
-                                  child: Text(
-                                    'Height',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 82, 80, 80)),
-                                  ),
+                                Text(
+                                  'Height',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 82, 80, 80)),
                                 ),
                               ],
                             ),

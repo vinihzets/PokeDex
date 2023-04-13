@@ -25,7 +25,7 @@ class _PokemonInfoState extends State<PokemonInfo> {
     return Scaffold(
       backgroundColor: getColor,
       body: SlidingUpPanel(
-        maxHeight: 450,
+        maxHeight: 410,
         color: const Color.fromARGB(255, 20, 20, 20),
         panelBuilder: (controller) => PokeInfoPanel(
           pokemon: widget.pokemon,
