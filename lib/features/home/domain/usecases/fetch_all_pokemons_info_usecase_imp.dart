@@ -8,6 +8,7 @@ class FetchAllPokemonsInfoUseCaseImp implements FetchAllPokemonsInfoUseCase {
 
   FetchAllPokemonsInfoUseCaseImp(this.homeRepository);
 
+  @override
   Future<Either<Failure, dynamic>> fetchAllPokemonsInfo(String url) {
     return homeRepository.fetchAllPokemonsInfo(url);
   }

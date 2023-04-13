@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final pokemonController = TextEditingController();
   bool showInputTextField = false;
   bool returned = false;
-  bool onPressioned = false;
+  bool onSearch = false;
 
   late HomeBloc bloc;
   late ConstsImages constsImages;
@@ -62,32 +62,53 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(top: 50),
             child: Row(
               children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showInputTextField = true;
-                      });
-                    },
-                    icon: const Icon(Icons.search)),
-                showInputTextField == true
-                    ? SizedBox(
-                        width: 240,
-                        child: TextFormField(
-                          controller: pokemonController,
-                          onFieldSubmitted: (v) {
-                            setState(() {
-                              onPressioned = true;
+                showInputTextField == false
+                    ? IconButton(
+                        onPressed: () {
+                          showInputTextField = true;
 
-                              inspect(pokemonController);
-                            });
-                          },
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.search))
+                    : IconButton(
+                        onPressed: () {
+                          showInputTextField = false;
+                          bloc.event.add(HomeEventFetchAllPokemons(context));
+
+                          onSearch = false;
+
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.rotate_left)),
+                if (showInputTextField == true)
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 270,
+                        child: TextField(
+                          controller: pokemonController,
+                          decoration: const InputDecoration(
+                              hintText: 'Pesquise por seu pokemon',
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)))),
                         ),
-                      )
-                    : const SizedBox.shrink()
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            onSearch = true;
+
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.send))
+                    ],
+                  )
+                else
+                  const SizedBox.shrink()
               ],
             ),
           ),
-          onPressioned == false
+          onSearch == false
               ? Padding(
                   padding: const EdgeInsets.only(top: 120.0),
                   child: BlocScreenBuilder(
@@ -138,9 +159,14 @@ _buildGetPokemonByName(HomeDataSources homeDataSources, String name) {
         if (snapshot.hasData) {
           final pokemon = snapshot.data!;
 
-          return PokeItem(pokemon: pokemon);
+          return Padding(
+            padding: const EdgeInsets.only(top: 140.0, bottom: 360),
+            child: PokeItem(pokemon: pokemon),
+          );
         } else {
-          return SizedBox.shrink();
+          return const Center(
+            child: Text('Nenhum Pokemon com esse nome encontrado'),
+          );
         }
       });
 }

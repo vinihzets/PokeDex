@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/core/utils/poke_color.dart';
 import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/main.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_evolves.dart';
@@ -12,7 +13,7 @@ class PokeInfoPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
-        length: 2,
+        length: 1,
         child: Scaffold(
           backgroundColor: const Color.fromARGB(255, 41, 39, 39),
           body: TabBarView(
@@ -38,7 +39,7 @@ class PokeInfoPanel extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.w600,
-                            color: gPokemonRepository.getColorPokemonType(
+                            color: PokeBoxColor.getColorPokemonType(
                                 type: type.type!.name.toString())),
                       )),
                     ),
@@ -99,7 +100,7 @@ class PokeInfoPanel extends StatelessWidget {
                   ],
                 ),
               ),
-              PokemonEvolves(pokemon: pokemon)
+              // PokemonEvolves(pokemon: pokemon)
             ],
           ),
         ),

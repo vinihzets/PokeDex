@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/core/utils/poke_color.dart';
 import 'package:pokedex/main.dart';
 import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_info_panel.dart';
@@ -19,12 +20,13 @@ class PokemonInfo extends StatefulWidget {
 class _PokemonInfoState extends State<PokemonInfo> {
   @override
   Widget build(BuildContext context) {
-    final getColor = gPokemonRepository.getColorPokemonType(
+    final getColor = PokeBoxColor.getColorPokemonType(
         type: widget.pokemon.types!.first.type!.name.toString());
 
     return Scaffold(
       backgroundColor: getColor,
       body: SlidingUpPanel(
+        maxHeight: 450,
         color: const Color.fromARGB(255, 20, 20, 20),
         panelBuilder: (controller) => PokeInfoPanel(
           pokemon: widget.pokemon,

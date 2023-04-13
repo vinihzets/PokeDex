@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/core/utils/icons_type.dart';
+import 'package:pokedex/core/utils/poke_color.dart';
 import 'package:pokedex/main.dart';
 import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_infos.dart';
@@ -15,7 +17,7 @@ class PokeItemSearch extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: Colors.white),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
-            color: gPokemonRepository.getColorPokemonType(
+            color: PokeBoxColor.getColorPokemonType(
                 type: pokemon.types![0].type!.name!)),
         child: GestureDetector(
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
@@ -36,8 +38,8 @@ class PokeItemSearch extends StatelessWidget {
                                   SizedBox(
                                       width: 20.0,
                                       height: 20.0,
-                                      child: Image.network(
-                                          gPokemonRepository.getIconType(
+                                      child:
+                                          Image.network(IconTypes.getIconType(
                                         type.type?.name ?? '',
                                       ))),
                                 ],

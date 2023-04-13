@@ -3,11 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:pokedex/core/inject/injector.dart';
 import 'package:pokedex/core/utils/consts.dart';
 import 'package:pokedex/features/splash/presentation/ui/splash_screen.dart';
-import 'package:pokedex/repository/pokemon_repository.dart';
 import 'package:pokedex/features/home/presentation/ui/home_screen.dart';
 
-final gPokemonRepository = PokemonRepository();
-Future<void> main() async {
+Future main() async {
   Injector.inject();
   late ConstsRoutes routesConsts;
 
