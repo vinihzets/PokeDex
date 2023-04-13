@@ -155,15 +155,6 @@ class GameIndices {
     version =
         json['version'] != null ? Ability.fromJson(json['version']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['game_index'] = gameIndex;
-    if (version != null) {
-      data['version'] = version!.toJson();
-    }
-    return data;
-  }
 }
 
 class Moves {
@@ -173,15 +164,6 @@ class Moves {
 
   Moves.fromJson(Map<String, dynamic> json) {
     move = json['move'] != null ? Ability.fromJson(json['move']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.move != null) {
-      data['move'] = this.move!.toJson();
-    }
-
-    return data;
   }
 }
 
@@ -216,19 +198,6 @@ class Sprites {
     frontShiny = json['front_shiny'];
     frontShinyFemale = json['front_shiny_female'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['back_default'] = this.backDefault;
-    data['back_female'] = this.backFemale;
-    data['back_shiny'] = this.backShiny;
-    data['back_shiny_female'] = this.backShinyFemale;
-    data['front_default'] = this.frontDefault;
-    data['front_female'] = this.frontFemale;
-    data['front_shiny'] = this.frontShiny;
-    data['front_shiny_female'] = this.frontShinyFemale;
-    return data;
-  }
 }
 
 class Stats {
@@ -243,16 +212,6 @@ class Stats {
     effort = json['effort'];
     stat = json['stat'] != null ? Ability.fromJson(json['stat']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['base_stat'] = this.baseStat;
-    data['effort'] = this.effort;
-    if (this.stat != null) {
-      data['stat'] = this.stat!.toJson();
-    }
-    return data;
-  }
 }
 
 class Types {
@@ -264,14 +223,5 @@ class Types {
   Types.fromJson(Map<String, dynamic> json) {
     slot = json['slot'];
     type = json['type'] != null ? Ability.fromJson(json['type']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['slot'] = this.slot;
-    if (this.type != null) {
-      data['type'] = this.type!.toJson();
-    }
-    return data;
   }
 }

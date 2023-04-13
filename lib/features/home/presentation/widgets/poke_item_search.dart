@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/core/utils/icons_type.dart';
 import 'package:pokedex/core/utils/poke_color.dart';
-import 'package:pokedex/main.dart';
 import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_infos.dart';
 

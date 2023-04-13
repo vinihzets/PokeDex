@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/core/utils/consts.dart';
 import 'package:pokedex/features/splash/presentation/bloc/splash_bloc.dart';
-import 'package:pokedex/main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,13 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:either_dart/either.dart';
 import 'package:pokedex/core/failure/failure.dart';
 import 'package:pokedex/features/home/data/datasources/home_datasources.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokedex/features/home/data/dtos/fetch_pokes_dto.dart';
-import 'package:pokedex/features/home/domain/entities/fetch_pokes_entity.dart';
 import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 
 class HomeDataSourcesRemoteImp implements HomeDataSources {

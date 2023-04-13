@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/architeture/bloc_builder.dart';
@@ -7,7 +5,6 @@ import 'package:pokedex/architeture/bloc_state.dart';
 import 'package:pokedex/core/utils/consts.dart';
 import 'package:pokedex/features/home/data/datasources/home_datasources.dart';
 import 'package:pokedex/features/home/data/dtos/fetch_pokes_dto.dart';
-import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/bloc/home_bloc.dart';
 import 'package:pokedex/features/home/presentation/bloc/home_event.dart';
 import 'package:pokedex/features/home/presentation/widgets/poke_item.dart';
@@ -170,121 +167,3 @@ _buildGetPokemonByName(HomeDataSources homeDataSources, String name) {
         }
       });
 }
-
-// Padding(
-//                   padding: const EdgeInsets.only(top: 70.0, left: 0.0),
-//                   child: Row(
-//                     children: [
-//                       returned == true
-//                           ? IconButton(
-//                               onPressed: () {
-//                                 setState(() {
-//                                   nameController.text = '';
-
-//                                   onPressioned = false;
-//                                   returned = false;
-//                                   showInputTextField = false;
-//                                 });
-//                               },
-//                               icon: const Icon(Icons.restore))
-//                           : const Text(''),
-//                       const Text(
-//                         'Pokedex',
-//                         style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
-//                       ),
-//                       showInputTextField == true
-//                           ? Expanded(
-//                               child: TextField(
-//                               keyboardType: TextInputType.name,
-//                               controller: nameController,
-//                               style: const TextStyle(fontSize: 12.0),
-//                               decoration: const InputDecoration(
-//                                 hintText: 'Search your Pokemon',
-//                               ),
-//                             ))
-//                           : const SizedBox(
-//                               width: 5.0, height: 5.0, child: Text('hahaha')),
-//                       Padding(
-//                         padding: const EdgeInsets.only(left: 50.0),
-//                         child: IconButton(
-//                             onPressed: () async {
-//                               setState(() {
-//                                 onPressioned = true;
-//                                 showInputTextField = true;
-//                                 returned = true;
-//                               });
-//                             },
-//                             icon: const Icon(Icons.search)),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 onPressioned == true && nameController.text.isNotEmpty
-//                     ? Padding(
-//                         padding: const EdgeInsets.only(top: 130.0),
-//                         child: FutureBuilder(
-//                             future: gPokemonRepository
-//                                 .getPokemonByName(nameController.text),
-//                             builder: ((context, snapshot) {
-//                               if (snapshot.hasData) {
-                               
-//                                 final pokemon =
-//                                     PokemonEntity.fromJson(snapshot.data);
-//                                 return GridView.builder(
-//                                     itemCount: 1,
-//                                     gridDelegate:
-//                                         const SliverGridDelegateWithFixedCrossAxisCount(
-//                                             crossAxisCount: 2),
-//                                     itemBuilder: (context, pokeInfo) {
-//                                       return PokeItem(pokemon: pokemon);
-//                                     });
-//                               } else if (snapshot.connectionState ==
-//                                   ConnectionState.waiting) {
-//                                 return const HomeLoading();
-//                               } else {
-//                                 return const Center(
-//                                     child: Text(
-//                                   'Não foi possivel encontrar este pokemon',
-//                                   style: TextStyle(fontSize: 20.0),
-//                                 ));
-//                               }
-//                             })))
-//                     : Padding(
-//                         padding: const EdgeInsets.only(top: 130.0),
-//                         child: FutureBuilder(
-//                             future: gPokemonRepository.getPokemonsFetch(),
-//                             builder: ((context, snapshot) {
-//                               if (snapshot.connectionState == ConnectionState.waiting) {
-//                                 return const HomeLoading();
-//                               } else if (snapshot.hasData) {
-//                                 return GridView.builder(
-//                                   physics: const BouncingScrollPhysics(),
-//                                   padding: const EdgeInsets.all(12),
-//                                   addAutomaticKeepAlives: true,
-//                                   itemCount: 700,
-//                                   itemBuilder: (context, index) {
-//                                     final url = snapshot.data['results'][index]['url'];
-
-//                                     return FutureBuilder(
-//                                       future:
-//                                           gPokemonRepository.getInfoPokemonsFetch(url),
-//                                       builder: (context, pokemonInfo) {
-//                                         if (pokemonInfo.hasData) {
-//                                           final pokemon = PokemonEntity.fromJson(
-//                                               pokemonInfo.data);
-//                                           return PokeItem(
-//                                             pokemon: pokemon,
-//                                           );
-//                                         } else {
-//                                           return const HomeLoading();
-//                                         }
-//                                       },
-//                                     );
-//                                   },
-//                                   gridDelegate:
-//                                       const SliverGridDelegateWithFixedCrossAxisCount(
-//                                           crossAxisCount: 2),
-//                                 );
-//                               }
-//                               return const HomeLoading();
-//                             })))

@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/architeture/bloc_state.dart';
 import 'package:pokedex/core/utils/hud_mixins.dart';
