@@ -34,6 +34,10 @@ class HomeBloc with HudMixins {
     _statePokemons.add(state);
   }
 
+  dispatchStatePokemonsInfo(BlocState state) {
+    _statePokemonsInfo.add(state);
+  }
+
   dispatchEvent(HomeEvent event) {
     _event.add(event);
   }
@@ -41,6 +45,8 @@ class HomeBloc with HudMixins {
   _mapListenEvent(HomeEvent event) {
     if (event is HomeEventFetchAllPokemons) {
       fetchAllPokemons(event.context);
+    } else if (event is HomeEventFetchAllPokemonsInfo) {
+      fetchAllPokemonsInfo(event.context, event.url);
     }
   }
 
@@ -57,6 +63,8 @@ class HomeBloc with HudMixins {
     final request = await fetchAllPokemonsInfoUseCase.fetchAllPokemonsInfo(url);
     request.fold((left) {
       showSnack(context, left.message);
-    }, (right) {});
+    }, (right) {
+      dispatchStatePokemonsInfo(BlocStableState(data: right));
+    });
   }
 }

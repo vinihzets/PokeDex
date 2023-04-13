@@ -1,11 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/architeture/bloc_builder.dart';
 import 'package:pokedex/architeture/bloc_state.dart';
 import 'package:pokedex/core/utils/consts.dart';
+import 'package:pokedex/features/home/data/datasources/home_datasources.dart';
 import 'package:pokedex/features/home/data/dtos/fetch_pokes_dto.dart';
+import 'package:pokedex/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/features/home/presentation/bloc/home_bloc.dart';
 import 'package:pokedex/features/home/presentation/bloc/home_event.dart';
+import 'package:pokedex/features/home/presentation/widgets/poke_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,19 +20,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final nameController = TextEditingController();
+  final pokemonController = TextEditingController();
   bool showInputTextField = false;
   bool returned = false;
   bool onPressioned = false;
 
   late HomeBloc bloc;
   late ConstsImages constsImages;
+  late HomeDataSources homeDataSources;
 
   @override
   void initState() {
     bloc = GetIt.I.get();
     constsImages = GetIt.I.get();
+    homeDataSources = GetIt.I.get();
+
     bloc.event.add(HomeEventFetchAllPokemons(context));
+
     super.initState();
   }
 
@@ -49,35 +58,92 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          BlocScreenBuilder(
-              stream: bloc.statePokemons,
-              builder: (state) {
-                if (state is BlocStableState) {
-                  final List<FetchPokesDto> list = state.data;
-
-                  return GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.all(12),
-                    addAutomaticKeepAlives: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return Container();
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        showInputTextField = true;
+                      });
                     },
-                  );
-                } else {
-                  return SizedBox.shrink();
-                }
-              })
+                    icon: const Icon(Icons.search)),
+                showInputTextField == true
+                    ? SizedBox(
+                        width: 240,
+                        child: TextFormField(
+                          controller: pokemonController,
+                          onFieldSubmitted: (v) {
+                            setState(() {
+                              onPressioned = true;
+
+                              inspect(pokemonController);
+                            });
+                          },
+                        ),
+                      )
+                    : const SizedBox.shrink()
+              ],
+            ),
+          ),
+          onPressioned == false
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 120.0),
+                  child: BlocScreenBuilder(
+                      stream: bloc.statePokemons,
+                      builder: (state) {
+                        if (state is BlocStableState) {
+                          final List<FetchPokesDto> list = state.data;
+                          return GridView(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2),
+                            children: list.map((e) {
+                              return _buildPokemonItem(homeDataSources, e);
+                            }).toList(),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      }),
+                )
+              : _buildGetPokemonByName(homeDataSources, pokemonController.text)
         ],
       ),
     ));
   }
 }
 
+Widget _buildPokemonItem(HomeDataSources homeDataSources, e) {
+  return FutureBuilder(
+      future: homeDataSources.fetchPokemonInfo(e.url),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final pokemon = snapshot.data!.fold((left) => null, (right) => right);
 
+          if (pokemon != null) {
+            return PokeItem(pokemon: pokemon);
+          }
+        }
+        return const SizedBox.shrink();
+      });
+}
+
+_buildGetPokemonByName(HomeDataSources homeDataSources, String name) {
+  return FutureBuilder(
+      future: homeDataSources.getPokemonByName(name),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final pokemon = snapshot.data!;
+
+          return PokeItem(pokemon: pokemon);
+        } else {
+          return SizedBox.shrink();
+        }
+      });
+}
 
 // Padding(
 //                   padding: const EdgeInsets.only(top: 70.0, left: 0.0),

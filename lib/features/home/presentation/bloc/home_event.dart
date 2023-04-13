@@ -7,3 +7,10 @@ class HomeEventFetchAllPokemons implements HomeEvent {
 
   HomeEventFetchAllPokemons(this.context);
 }
+
+class HomeEventFetchAllPokemonsInfo implements HomeEvent {
+  BuildContext context;
+  String url;
+
+  HomeEventFetchAllPokemonsInfo(this.context, this.url);
+}

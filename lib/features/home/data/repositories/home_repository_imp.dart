@@ -16,6 +16,6 @@ class HomeRepositoryImp implements HomeRepository {
 
   @override
   Future<Either<Failure, dynamic>> fetchAllPokemonsInfo(String url) {
-    return homeDataSources.fetchAllPokemonsInfo(url);
+    return homeDataSources.fetchPokemonInfo(url);
   }
 }
