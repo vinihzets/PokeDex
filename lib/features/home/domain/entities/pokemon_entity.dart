@@ -7,8 +7,6 @@ class PokemonEntity {
   List<Types>? types;
   int? weight;
   String? url;
-  List<PrevEvolution>? prevEvolution;
-  List<NextEvolution>? nextEvolution;
 
   PokemonEntity({
     this.height,
@@ -19,13 +17,10 @@ class PokemonEntity {
     this.types,
     this.weight,
     this.url,
-    this.prevEvolution,
-    this.nextEvolution,
   });
 
   PokemonEntity.fromJson(
     Map<String, dynamic> json,
-    //  String this.url
   ) {
     height = json['height'];
     id = json['id'];
@@ -46,82 +41,6 @@ class PokemonEntity {
       });
     }
     weight = json['weight'];
-
-    if (json['next_evolution'] != null) {
-      nextEvolution = <NextEvolution>[];
-      json['next_evolution'].forEach((evolution) {
-        nextEvolution!.add(NextEvolution.fromJson(evolution));
-      });
-    }
-    if (json['prev_evolution'] != null) {
-      prevEvolution = <PrevEvolution>[];
-      json['prev_evolution'].forEach((evolution) {
-        prevEvolution!.add(PrevEvolution.fromJson(evolution));
-      });
-    }
-  }
-}
-
-class NextEvolution {
-  String? num;
-  String? name;
-
-  NextEvolution({this.num, this.name});
-
-  NextEvolution.fromJson(Map<String, dynamic> json) {
-    num = json['num'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['num'];
-    data['name'];
-    return data;
-  }
-}
-
-class PrevEvolution {
-  String? num;
-  String? name;
-
-  PrevEvolution({this.num, this.name});
-
-  PrevEvolution.fromJson(Map<String, dynamic> json) {
-    num = json['num'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['num'];
-    data['name'];
-    return data;
-  }
-}
-
-class Abilities {
-  Ability? ability;
-  bool? isHidden;
-  int? slot;
-
-  Abilities({this.ability, this.isHidden, this.slot});
-
-  Abilities.fromJson(Map<String, dynamic> json) {
-    ability =
-        json['ability'] != null ? Ability.fromJson(json['ability']) : null;
-    isHidden = json['is_hidden'];
-    slot = json['slot'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    if (ability != null) {
-      data['ability'] = ability!.toJson();
-    }
-    data['is_hidden'] = isHidden;
-    data['slot'] = slot;
-    return data;
   }
 }
 
@@ -134,13 +53,6 @@ class Ability {
   Ability.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     url = json['url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['name'];
-    data['url'];
-    return data;
   }
 }
 
